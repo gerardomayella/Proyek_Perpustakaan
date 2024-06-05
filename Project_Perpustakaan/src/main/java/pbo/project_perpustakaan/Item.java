@@ -15,5 +15,22 @@ public class Item {
         return "title";
     }
 
+    public String getAuthor() {
+        return "author";
+    }
+
+    public boolean getIsAvailable() {
+        return false;
+    }
+
+    public void setIsAvailable(boolean x) {
+        this.isAvailable = x;
+    }
+
+    public void displayInfo() {
+        System.out.println("Title : " + title);
+        System.out.println("Author : " + author);
+        System.out.println("Available " + isAvailable);
+    }
 
 }

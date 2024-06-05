@@ -2,15 +2,11 @@ package pbo.project_perpustakaan;
 
 public class Member {
     private String name;
-    private String nim;
-    private int counterItem;
-    // maksimal member hanya boleh meminjam 20 barang
-    private Item[] borrowedItem = new Item[20];
+    private int nim;
 
-    public Member(String name, String student) {
+    public Member(String name, int nim) {
         this.name = name;
-        this.nim = student;
-        this.counterItem = 0;
+        this.nim = nim;
     }
 
     public String getName() {
@@ -21,52 +17,12 @@ public class Member {
         this.name = name;
     }
 
-    public String getNim() {
+    public int getNim() {
         return nim;
     }
 
-    public void setNim(String student) {
-        this.nim = student;
+    public void setNim(int nim) {
+        this.nim = nim;
     }
 
-    public int getCounterItem() {
-        return counterItem;
-    }
-
-    public void printBorrowedItem() {
-        for (int i = 0; i < borrowedItem.length; i++) {
-            System.out.println(borrowedItem[i].getTitle());
-        }
-    }
-
-    public void setBorrowedItem(Item item) {
-        if (counterItem < borrowedItem.length) {
-            this.borrowedItem[counterItem] = item;
-            counterItem++;
-        } else {
-            System.out.println("The maximum item that can be borrowed is only 20 pieces");
-        }
-    }
-
-    public void deleteBorrowesItem(int x) {
-        if (!(borrowedItem[x - 1] == null)) {
-            borrowedItem[x - 1] = null;
-            counterItem--;
-            for (int i = x - 1; i < borrowedItem.length; i++) {
-                borrowedItem[i] = borrowedItem[i + 1];
-            }
-            borrowedItem[borrowedItem.length - 1] = null;
-        } else {
-            System.out.println("The item that you want to delete is not exist");
-        }
-    }
-
-    public boolean isValidReturn() {
-        for (int i = 0; i < borrowedItem.length; i++) {
-            if (borrowedItem[i] != null) {
-                return false;
-            }
-        }
-        return true;
-    }
 }
