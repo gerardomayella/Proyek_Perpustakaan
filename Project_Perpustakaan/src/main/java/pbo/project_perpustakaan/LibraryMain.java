@@ -150,7 +150,7 @@ public class LibraryMain {
     }
 
     public void returnMenu(Item[] books, Item[] cds, Item[] journals, Item[] magazines, Item[] newspapers,
-            Member member, borrowedPortal borrow) {
+            Member member, peminjamanBarang borrow) {
         Scanner input = new Scanner(System.in);
         int returned = 0;
         if (borrow.getCounterItem() == 0) {

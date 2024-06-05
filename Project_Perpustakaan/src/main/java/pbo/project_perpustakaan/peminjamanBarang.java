@@ -16,7 +16,7 @@ public class peminjamanBarang {
     private int counterItem;
     private Item[] borrowedItem = new Item[20];
 
-    public borrowedPortal(Member member) {
+    public peminjamanBarang(Member member) {
         this.member = member;
         this.counterItem = 0;
     }
