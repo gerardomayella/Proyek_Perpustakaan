@@ -9,7 +9,7 @@ package pbo.project_perpustakaan;
  * @author Gerardo Ardianta
  */
 
-public class borrowedPortal {
+public class peminjamanBarang {
     private String dateBorrow[] = new String[20];
     private String dateReturn[] = new String[20];
     private Member member;
