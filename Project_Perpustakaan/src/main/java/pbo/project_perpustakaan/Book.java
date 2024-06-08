@@ -1,15 +1,14 @@
 package pbo.project_perpustakaan;
 
-public class Book extends Item {
-
+public class Book extends Item implements halaman {
     private String isbn;
-    private int pageCount;
+    private int jumlahHalaman;
 
     // constructor
-    public Book(String title, String author, String isbn, int pageCount, boolean isAvailable) {
+    public Book(String title, String author, String isbn, int jumlahHalaman, boolean isAvailable) {
         super(title, author, isAvailable);
         this.isbn = isbn;
-        this.pageCount = pageCount;
+        this.jumlahHalaman = jumlahHalaman;
     }
 
     // getter
@@ -17,27 +16,22 @@ public class Book extends Item {
         return isbn;
     }
 
-    public int getPageCount() {
-        return pageCount;
-
-    }
-
     // setter
     public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
 
-    public void setPageCount(int pageCount) {
-        this.pageCount = pageCount;
-
-    }
-
     // display info
     @Override
     public void displayInfo() {
-        System.out.println("Book Information : ");
+        System.out.println("informasi buku : ");
         super.displayInfo();
         System.out.println("ISBN : " + isbn);
-        System.out.println("Number of pages : " + pageCount);
+        System.out.println("Jumlah halaman : ");
+    }
+
+    @Override
+    public int getJumlahHalaman() {
+        return jumlahHalaman;
     }
 }

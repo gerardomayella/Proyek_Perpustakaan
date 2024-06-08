@@ -1,16 +1,16 @@
 package pbo.project_perpustakaan;
 
-public class Journal extends Item {
-
+public class Journal extends Item implements halaman {
     private String volume;
     private String issue;
+    private int jumlahHalaman;
 
     // constructor
-    public Journal(String title, String author, String volume, String issue, boolean isAvailable) {
+    public Journal(String title, String author, String volume, String issue, boolean isAvailable, int jumlahHalaman) {
         super(title, author, isAvailable);
         this.volume = volume;
         this.issue = issue;
-
+        this.jumlahHalaman = jumlahHalaman;
     }
 
     // getters
@@ -35,10 +35,15 @@ public class Journal extends Item {
     // display information
     @Override
     public void displayInfo() {
-        System.out.println("Journal Information : ");
+        System.out.println("Informasi Jurnal : ");
         super.displayInfo();
         System.out.println("Volume : " + volume);
-        System.out.println("Issue : " + issue);
+        System.out.println("Terbitan : " + issue);
+        System.out.println("Jumlah halaman : " + jumlahHalaman);
     }
 
+    @Override
+    public int getJumlahHalaman() {
+        return jumlahHalaman;
+    }
 }

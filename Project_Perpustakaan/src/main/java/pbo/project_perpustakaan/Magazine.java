@@ -1,7 +1,6 @@
 package pbo.project_perpustakaan;
 
 public class Magazine extends Item {
-
     private String edition;
 
     public Magazine(String title, String author, String edition, boolean isAvailable) {

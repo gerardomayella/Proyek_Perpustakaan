@@ -1,7 +1,6 @@
 package pbo.project_perpustakaan;
 
 public class CD extends Item {
-
     private String artist;
     private int trackCount;
 

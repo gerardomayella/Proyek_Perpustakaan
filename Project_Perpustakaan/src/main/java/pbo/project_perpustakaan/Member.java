@@ -24,5 +24,4 @@ public class Member {
     public void setNim(int nim) {
         this.nim = nim;
     }
-
 }
