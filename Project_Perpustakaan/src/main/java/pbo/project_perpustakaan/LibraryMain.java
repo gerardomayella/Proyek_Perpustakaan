@@ -174,7 +174,7 @@ public class LibraryMain {
 
     public static void displayMembers() {
         for (int i = 0; i < memberList.length; i++) {
-            System.out.println((i + 1) + memberList[i].getName());
+            System.out.println((i + 1) + memberList[i].getNama());
         }
     }
 

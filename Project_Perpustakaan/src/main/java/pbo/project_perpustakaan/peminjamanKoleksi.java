@@ -8,23 +8,23 @@ package pbo.project_perpustakaan;
  *
  * @author Gerardo Ardianta
  */
-
 public class peminjamanKoleksi {
-    private String tanggalPinjam;
-    private String tanggalKembali;
+    private int tanggalPinjam;
+    private int tanggalKembali;
     private Item koleksi;
+    private int denda = 0;
 
-    public peminjamanKoleksi(Item koleksi, String tanggalPeminjaman, String tanggalKembali) {
+    public peminjamanKoleksi(Item koleksi, int tanggalPeminjaman, int tanggalKembali) {
         this.koleksi = koleksi;
         this.tanggalKembali = tanggalKembali;
         this.tanggalPinjam = tanggalPeminjaman;
     }
 
-    public void setTanggalPinjam(String tanggalPinjam) {
+    public void setTanggalPinjam(int tanggalPinjam) {
         this.tanggalPinjam = tanggalPinjam;
     }
 
-    public void setTanggalKembali(String tanggalKembali) {
+    public void setTanggalKembali(int tanggalKembali) {
         this.tanggalKembali = tanggalKembali;
     }
 
@@ -32,15 +32,23 @@ public class peminjamanKoleksi {
         this.koleksi = koleksi;
     }
 
-    public String getTanggalPinjam() {
+    public int getTanggalPinjam() {
         return tanggalPinjam;
     }
 
-    public String getTanggalKembali() {
+    public int getTanggalKembali() {
         return tanggalKembali;
     }
 
     public Item getKoleksi() {
         return koleksi;
+    }
+
+    public void setDenda(int denda) {
+        this.denda = denda;
+    }
+
+    public int getDenda() {
+        return denda;
     }
 }
