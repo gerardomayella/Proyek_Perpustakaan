@@ -107,6 +107,7 @@ public class LibraryMain {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         int pilihanMember, pilihanMenu;
+
         // memilih member
         while (true) {
             System.out.println("pilih member (angka): ");
@@ -123,6 +124,7 @@ public class LibraryMain {
                 input.next();
             }
         }
+
         // memilih menu
         while (true) {
             int x = displayMenu();
@@ -158,7 +160,9 @@ public class LibraryMain {
             }
 
             printDisplayInfo(itemList[koleksiDicari - 1]);
+
         } else if (pilihanMenu == 2) { // menu peminjaman
+            menuPeminjaman(itemList, memberList[pilihanMember - 1]);
 
         } else if (pilihanMenu == 3) { // menu pengembalian
 
@@ -185,38 +189,13 @@ public class LibraryMain {
 
     public static void menuPeminjaman(Item[] item, Member member) {
 
-        peminjamanBarang pinjam = new peminjamanBarang(member);
         Scanner input = new Scanner(System.in);
 
         input.close();
     }
 
-    public void menuPengembalian(Member member, peminjamanBarang borrow) {
-        Scanner input = new Scanner(System.in);
-        int returned = 0;
-        if (borrow.getCounterItem() == 0) {
-            System.out.println("Member belum meminjam barang");
-        } else {
-            while (true) {
-                System.out.println("barang yang belum dikembalikan:");
-                borrow.printBorrowedItem();
-                System.out.print("Masukkan barang yang ingin dikembalikan (nomor):");
-                try {
-                    returned = input.nextInt();
-                    if (borrow.isValidReturn(returned)) {
-                        borrow.deleteBorrowedItem(returned);
-                        break;
-                    } else {
-                        falseRespond();
-                    }
-                } catch (InputMismatchException e) {
-                    falseRespond();
-                    input.next();
-                }
-            }
+    public void menuPengembalian(Member member, peminjamanKoleksi borrow) {
 
-        }
-        input.close();
     }
 
     public static void falseRespond() {
