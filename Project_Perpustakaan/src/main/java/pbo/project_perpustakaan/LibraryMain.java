@@ -15,6 +15,7 @@ public class LibraryMain {
             new Book("The Little Prince", "Antoine de Saint-Exupéry", "9780156012195", 96, true),
             new Book("The Diary of a Young Girl", "Anne Frank", "9780553296984", 283, true),
             new Book("The Adventures of Huckleberry Finn", "Mark Twain", "9780486280615", 366, true),
+
             new CD("The Beatles", 14, "Abbey Road", "The Beatles", true),
             new CD("Pink Floyd", 10, "The Dark Side of the Moon", "Pink Floyd", true),
             new CD("Michael Jackson", 10, "Thriller", "Michael Jackson", true),
@@ -25,6 +26,7 @@ public class LibraryMain {
             new CD("Taylor Swift", 16, "1989", "Taylor Swift", true),
             new CD("Drake", 25, "Scorpion", "Drake", true),
             new CD("Kanye West", 23, "The Life of Pablo", "Kanye West", true),
+
             new Journal("Nature", "Nature Publishing Group", "Volume 1", "Issue 1", true, 100),
             new Journal("Science", "American Association for the Advancement of Science", "Volume 2", "Issue 2", true,
                     150),
@@ -44,19 +46,7 @@ public class LibraryMain {
             new Journal("Nature", "Nature Publishing Group", "Volume 1", "Issue 1", true, 100),
             new Journal("Science", "American Association for the Advancement of Science", "Volume 2", "Issue 2", true,
                     150),
-            new Journal("Cell", "Cell Press", "Volume 3", "Issue 3", true, 120),
-            new Journal("The Lancet", "Elsevier", "Volume 4", "Issue 4", true, 180),
-            new Journal("The New England Journal of Medicine", "Massachusetts Medical Society", "Volume 5", "Issue 5",
-                    true, 200),
-            new Journal("The Journal of the American Medical Association", "American Medical Association", "Volume 6",
-                    "Issue 6", true, 220),
-            new Journal("The BMJ", "BMJ Publishing Group Ltd", "Volume 7", "Issue 7", true, 140),
-            new Journal("The Annals of Internal Medicine", "American College of Physicians", "Volume 8", "Issue 8",
-                    true, 160),
-            new Journal("The Journal of the American College of Cardiology", "Elsevier", "Volume 9", "Issue 9", true,
-                    190),
-            new Journal("The Journal of Clinical Investigation", "American Society for Clinical Investigation",
-                    "Volume 10", "Issue 10", true, 210),
+
             new Magazine("Time", "Time USA, LLC", "Edition 1", true),
             new Magazine("National Geographic", "National Geographic Partners", "Edition 2", true),
             new Magazine("The Economist", "The Economist Group", "Edition 3", true),
@@ -67,6 +57,7 @@ public class LibraryMain {
             new Magazine("Elle", "Hearst Magazines", "Edition 8", true),
             new Magazine("Cosmopolitan", "Hearst Magazines", "Edition 9", true),
             new Magazine("Harper's Bazaar", "Hearst Magazines", "Edition 10", true),
+
             new Newspaper("The New York Times", "The New York Times Company", "2022-01-01", 20, true),
             new Newspaper("The Wall Street Journal", "Dow Jones & Company", "2022-01-02", 30, true),
             new Newspaper("USA Today", "Gannett Company", "2022-01-03", 25, true),
@@ -174,7 +165,7 @@ public class LibraryMain {
         } else {
             // exit
         }
-
+        input.close();
     } // end of main
 
     public static void displayMembers() {
@@ -192,93 +183,15 @@ public class LibraryMain {
         return 5;
     }
 
-    public void loanMenu(Item[] books, Item[] cds, Item[] journals, Item[] magazines, Item[] newspapers,
-            Member member) {
+    public static void menuPeminjaman(Item[] item, Member member) {
 
         peminjamanBarang pinjam = new peminjamanBarang(member);
         Scanner input = new Scanner(System.in);
-        int x;
-
-        while (true) {
-            System.out.println("LOAN MENU : ");
-            System.out.println("1. Book");
-            System.out.println("2. CD");
-            System.out.println("3. Journal");
-            System.out.println("4. Magazine");
-            System.out.println("5. Newspaper");
-            System.out.print("Enter your input : ");
-            try {
-                x = input.nextInt();
-                System.out.println();
-                if (x > 5 || x < 1) {
-                    falseRespond();
-                } else {
-                    break;
-                }
-            } catch (InputMismatchException e) {
-                falseRespond();
-                input.next();
-            }
-        }
-        String tanggalPinjam, tanggalKembali;
-        switch (x) {
-            case 1:
-                int pilihanBuku;
-
-                System.out.println("Buku yang bisa dipinjam :");
-                displayItems(books);
-                while (true) {
-                    try {
-                        System.out.println("masukkan buku yang ingin dipinjam (angka) : ");
-                        pilihanBuku = input.nextInt();
-                        if (pilihanBuku > 0 && pilihanBuku < books.length) {
-                            break;
-                        } else {
-                            falseRespond();
-                        }
-                    } catch (InputMismatchException e) {
-                        falseRespond();
-                        input.next();
-                    }
-                }
-
-                System.out.println("masukkan tanggal peminjaman : ");
-                tanggalPinjam = input.nextLine();
-                System.out.println("masukkan tanggal pengembalian : ");
-                tanggalKembali = input.nextLine();
-                pinjam.setBorrowedItem(books[pilihanBuku - 1], tanggalPinjam, tanggalKembali);
-                break;
-            case 2:
-                System.out.println("CD yang bisa dipinjam :");
-                displayItems(cds);
-                pinjam.setBorrowedItem(null, null, null);
-                break;
-            case 3:
-                System.out.println("Jurnal yang bisa dipinjam :");
-                displayItems(journals);
-                pinjam.setBorrowedItem(null, null, null);
-                break;
-            case 4:
-                System.out.println("Majalah yang bisa dipinjam :");
-                displayItems(magazines);
-                pinjam.setBorrowedItem(null, null, null);
-                break;
-            case 5:
-                System.out.println("Koran yang bisa dipinjam :");
-                displayItems(newspapers);
-                pinjam.setBorrowedItem(null, null, null);
-                break;
-
-            default:
-                falseRespond();
-                break;
-        }
 
         input.close();
     }
 
-    public void returnMenu(Item[] books, Item[] cds, Item[] journals, Item[] magazines, Item[] newspapers,
-            Member member, peminjamanBarang borrow) {
+    public void menuPengembalian(Member member, peminjamanBarang borrow) {
         Scanner input = new Scanner(System.in);
         int returned = 0;
         if (borrow.getCounterItem() == 0) {
@@ -317,6 +230,7 @@ public class LibraryMain {
     }
 
     public static void printDisplayInfo(Item item) {
+
         if (item instanceof Book) {
             ((Book) item).displayInfo();
         } else if (item instanceof CD) {
@@ -329,4 +243,5 @@ public class LibraryMain {
             ((Newspaper) item).displayInfo();
         }
     }
+
 }
