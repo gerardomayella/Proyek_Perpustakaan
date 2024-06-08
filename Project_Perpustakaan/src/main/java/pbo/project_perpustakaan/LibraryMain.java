@@ -4,8 +4,7 @@ import java.util.Scanner;
 import java.util.InputMismatchException;
 
 public class LibraryMain {
-
-    public static Item[] bookList = {
+    public static Item itemList[] = {
             new Book("To Kill a Mockingbird", "Harper Lee", "9780060935467", 324, true),
             new Book("The Great Gatsby", "F. Scott Fitzgerald", "9780141182634", 256, true),
             new Book("Pride and Prejudice", "Jane Austen", "9780141439518", 432, true),
@@ -15,10 +14,7 @@ public class LibraryMain {
             new Book("The Hobbit", "J.R.R. Tolkien", "9780618968633", 320, true),
             new Book("The Little Prince", "Antoine de Saint-Exupéry", "9780156012195", 96, true),
             new Book("The Diary of a Young Girl", "Anne Frank", "9780553296984", 283, true),
-            new Book("The Adventures of Huckleberry Finn", "Mark Twain", "9780486280615", 366, true)
-    };
-
-    public static Item[] cdList = {
+            new Book("The Adventures of Huckleberry Finn", "Mark Twain", "9780486280615", 366, true),
             new CD("The Beatles", 14, "Abbey Road", "The Beatles", true),
             new CD("Pink Floyd", 10, "The Dark Side of the Moon", "Pink Floyd", true),
             new CD("Michael Jackson", 10, "Thriller", "Michael Jackson", true),
@@ -28,30 +24,39 @@ public class LibraryMain {
             new CD("Adele", 11, "21", "Adele", true),
             new CD("Taylor Swift", 16, "1989", "Taylor Swift", true),
             new CD("Drake", 25, "Scorpion", "Drake", true),
-            new CD("Kanye West", 23, "The Life of Pablo", "Kanye West", true)
-
-    };
-
-    public static Item[] journalList = {
-            new Journal("Nature", "Nature Publishing Group", "Volume 1", "Issue 1", true),
-            new Journal("Science", "American Association for the Advancement of Science", "Volume 2", "Issue 2",
-                    true),
-            new Journal("Cell", "Cell Press", "Volume 3", "Issue 3", true),
-            new Journal("The Lancet", "Elsevier", "Volume 4", "Issue 4", true),
-            new Journal("The New England Journal of Medicine", "Massachusetts Medical Society", "Volume 5",
-                    "Issue 5", true),
-            new Journal("The Journal of the American Medical Association", "American Medical Association",
-                    "Volume 6", "Issue 6", true),
-            new Journal("The BMJ", "BMJ Publishing Group Ltd", "Volume 7", "Issue 7", true),
+            new CD("Kanye West", 23, "The Life of Pablo", "Kanye West", true),
+            new Journal("Nature", "Nature Publishing Group", "Volume 1", "Issue 1", true, 100),
+            new Journal("Science", "American Association for the Advancement of Science", "Volume 2", "Issue 2", true,
+                    150),
+            new Journal("Cell", "Cell Press", "Volume 3", "Issue 3", true, 120),
+            new Journal("The Lancet", "Elsevier", "Volume 4", "Issue 4", true, 180),
+            new Journal("The New England Journal of Medicine", "Massachusetts Medical Society", "Volume 5", "Issue 5",
+                    true, 200),
+            new Journal("The Journal of the American Medical Association", "American Medical Association", "Volume 6",
+                    "Issue 6", true, 220),
+            new Journal("The BMJ", "BMJ Publishing Group Ltd", "Volume 7", "Issue 7", true, 140),
             new Journal("The Annals of Internal Medicine", "American College of Physicians", "Volume 8", "Issue 8",
-                    true),
-            new Journal("The Journal of the American College of Cardiology", "Elsevier", "Volume 9", "Issue 9",
-                    true),
+                    true, 160),
+            new Journal("The Journal of the American College of Cardiology", "Elsevier", "Volume 9", "Issue 9", true,
+                    190),
             new Journal("The Journal of Clinical Investigation", "American Society for Clinical Investigation",
-                    "Volume 10", "Issue 10", true)
-    };
-
-    public static Item[] magazineList = {
+                    "Volume 10", "Issue 10", true, 210),
+            new Journal("Nature", "Nature Publishing Group", "Volume 1", "Issue 1", true, 100),
+            new Journal("Science", "American Association for the Advancement of Science", "Volume 2", "Issue 2", true,
+                    150),
+            new Journal("Cell", "Cell Press", "Volume 3", "Issue 3", true, 120),
+            new Journal("The Lancet", "Elsevier", "Volume 4", "Issue 4", true, 180),
+            new Journal("The New England Journal of Medicine", "Massachusetts Medical Society", "Volume 5", "Issue 5",
+                    true, 200),
+            new Journal("The Journal of the American Medical Association", "American Medical Association", "Volume 6",
+                    "Issue 6", true, 220),
+            new Journal("The BMJ", "BMJ Publishing Group Ltd", "Volume 7", "Issue 7", true, 140),
+            new Journal("The Annals of Internal Medicine", "American College of Physicians", "Volume 8", "Issue 8",
+                    true, 160),
+            new Journal("The Journal of the American College of Cardiology", "Elsevier", "Volume 9", "Issue 9", true,
+                    190),
+            new Journal("The Journal of Clinical Investigation", "American Society for Clinical Investigation",
+                    "Volume 10", "Issue 10", true, 210),
             new Magazine("Time", "Time USA, LLC", "Edition 1", true),
             new Magazine("National Geographic", "National Geographic Partners", "Edition 2", true),
             new Magazine("The Economist", "The Economist Group", "Edition 3", true),
@@ -61,10 +66,7 @@ public class LibraryMain {
             new Magazine("Vogue", "Condé Nast", "Edition 7", true),
             new Magazine("Elle", "Hearst Magazines", "Edition 8", true),
             new Magazine("Cosmopolitan", "Hearst Magazines", "Edition 9", true),
-            new Magazine("Harper's Bazaar", "Hearst Magazines", "Edition 10", true)
-    };
-
-    public static Item[] newspaperList = {
+            new Magazine("Harper's Bazaar", "Hearst Magazines", "Edition 10", true),
             new Newspaper("The New York Times", "The New York Times Company", "2022-01-01", 20, true),
             new Newspaper("The Wall Street Journal", "Dow Jones & Company", "2022-01-02", 30, true),
             new Newspaper("USA Today", "Gannett Company", "2022-01-03", 25, true),
@@ -77,28 +79,126 @@ public class LibraryMain {
             new Newspaper("The Denver Post", "Digital First Media", "2022-01-10", 23, true)
     };
 
+    public static Member memberList[] = {
+            new Member("Akhmad Fahmi", 12345),
+            new Member("Ratna Sari", 67890),
+            new Member("Ayu Lestari", 11111),
+            new Member("Budi Santoso", 22222),
+            new Member("Eva Wijaya", 33333),
+            new Member("Charlie Liem", 44444),
+            new Member("David Gunawan", 55555),
+            new Member("Franky Tan", 66666),
+            new Member("George Widjaja", 77777),
+            new Member("Helen Sutanto", 88888),
+            new Member("Ivan Setiawan", 99999),
+            new Member("Jenny Prasetyo", 10101),
+            new Member("Kevin Widodo", 12121),
+            new Member("Lily Surya", 13131),
+            new Member("Mariana Indrawati", 14141),
+            new Member("Nadia Satria", 15151),
+            new Member("Olivia Wibowo", 16161),
+            new Member("Puspita Sari", 17171),
+            new Member("Quincy Hartono", 18181),
+            new Member("Rachel Pratama", 19191),
+            new Member("Sari Widiyanti", 20202),
+            new Member("Tanti Nugroho", 21212),
+            new Member("Umi Salamah", 22222),
+            new Member("Vivian Wijaya", 23232),
+            new Member("Walter Liem", 24242),
+            new Member("Xenia Prasetyo", 25252),
+            new Member("Yolanda Indrawati", 26262),
+            new Member("Zulkifli Satria", 27272),
+            new Member("Asep Saefulloh", 28282),
+            new Member("Bambang Surya", 29292),
+            new Member("Cici Widyawati", 30303)
+    };
+
     public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        int pilihanMember, pilihanMenu;
+        // memilih member
+        while (true) {
+            System.out.println("pilih member (angka): ");
+            displayMembers();
+            try {
+                pilihanMember = input.nextInt();
+                if (pilihanMember > 0 && pilihanMember <= memberList.length) {
+                    break;
+                } else {
+                    falseRespond();
+                }
+            } catch (InputMismatchException e) {
+                falseRespond();
+                input.next();
+            }
+        }
+        // memilih menu
+        while (true) {
+            int x = displayMenu();
+            System.out.println("pilih menu : ");
+            try {
+                pilihanMenu = input.nextInt();
+                if (pilihanMenu > 0 && pilihanMenu < x) {
+                    break;
+                } else {
+                    falseRespond();
+                }
+            } catch (InputMismatchException e) {
+                falseRespond();
+                input.next();
+            }
+        }
 
-        System.out.println("");
+        if (pilihanMenu == 1) { // mencari koleksi
+            int koleksiDicari;
+            displayItems(itemList);
+            while (true) {
+                System.out.println("Koleksi apa yang ingin anda cari : ");
+                try {
+                    koleksiDicari = input.nextInt();
+                    if (koleksiDicari > 0 && koleksiDicari <= itemList.length) {
+                        break;
+                    }
+                    falseRespond();
+                } catch (InputMismatchException e) {
+                    falseRespond();
+                    input.next();
+                }
+            }
 
+            printDisplayInfo(itemList[koleksiDicari - 1]);
+        } else if (pilihanMenu == 2) { // menu peminjaman
+
+        } else if (pilihanMenu == 3) { // menu pengembalian
+
+        } else {
+            // exit
+        }
+
+    } // end of main
+
+    public static void displayMembers() {
+        for (int i = 0; i < memberList.length; i++) {
+            System.out.println((i + 1) + memberList[i].getName());
+        }
     }
 
-    public void displayMenu() {
+    public static int displayMenu() {
         System.out.println("Library menu ");
-        System.out.println("1. Looking for items ");
-        System.out.println("2. Loan menu ");
-        System.out.println("3. return Menu");
+        System.out.println("1. Mencari koleksi ");
+        System.out.println("2. Menu peminjaman ");
+        System.out.println("3. Menu pengembalian");
         System.out.println("4. Exit");
-    }
-
-    public static void login(int nim, String name) {
-        Member member = new Member(name, nim);
+        return 5;
     }
 
     public void loanMenu(Item[] books, Item[] cds, Item[] journals, Item[] magazines, Item[] newspapers,
             Member member) {
+
+        peminjamanBarang pinjam = new peminjamanBarang(member);
         Scanner input = new Scanner(System.in);
         int x;
+
         while (true) {
             System.out.println("LOAN MENU : ");
             System.out.println("1. Book");
@@ -120,32 +220,60 @@ public class LibraryMain {
                 input.next();
             }
         }
-
+        String tanggalPinjam, tanggalKembali;
         switch (x) {
             case 1:
-                System.out.println("List of books that can be borrowed:");
-                printItems(books);
+                int pilihanBuku;
+
+                System.out.println("Buku yang bisa dipinjam :");
+                displayItems(books);
+                while (true) {
+                    try {
+                        System.out.println("masukkan buku yang ingin dipinjam (angka) : ");
+                        pilihanBuku = input.nextInt();
+                        if (pilihanBuku > 0 && pilihanBuku < books.length) {
+                            break;
+                        } else {
+                            falseRespond();
+                        }
+                    } catch (InputMismatchException e) {
+                        falseRespond();
+                        input.next();
+                    }
+                }
+
+                System.out.println("masukkan tanggal peminjaman : ");
+                tanggalPinjam = input.nextLine();
+                System.out.println("masukkan tanggal pengembalian : ");
+                tanggalKembali = input.nextLine();
+                pinjam.setBorrowedItem(books[pilihanBuku - 1], tanggalPinjam, tanggalKembali);
                 break;
             case 2:
-                System.out.println("List of CDs that can be borrowed:");
-                printItems(cds);
+                System.out.println("CD yang bisa dipinjam :");
+                displayItems(cds);
+                pinjam.setBorrowedItem(null, null, null);
                 break;
             case 3:
-                System.out.println("List of journals that can be borrowed:");
-                printItems(journals);
+                System.out.println("Jurnal yang bisa dipinjam :");
+                displayItems(journals);
+                pinjam.setBorrowedItem(null, null, null);
                 break;
             case 4:
-                System.out.println("List of Magazines that can be borrowed:");
-                printItems(magazines);
+                System.out.println("Majalah yang bisa dipinjam :");
+                displayItems(magazines);
+                pinjam.setBorrowedItem(null, null, null);
                 break;
             case 5:
-                System.out.println("List of CD that can be borrowed:");
-                printItems(newspapers);
+                System.out.println("Koran yang bisa dipinjam :");
+                displayItems(newspapers);
+                pinjam.setBorrowedItem(null, null, null);
                 break;
 
             default:
+                falseRespond();
                 break;
         }
+
         input.close();
     }
 
@@ -154,12 +282,12 @@ public class LibraryMain {
         Scanner input = new Scanner(System.in);
         int returned = 0;
         if (borrow.getCounterItem() == 0) {
-            System.out.println("You haven't borrowed any items, borrow it now!");
+            System.out.println("Member belum meminjam barang");
         } else {
             while (true) {
-                System.out.println("items that have not been returned:");
+                System.out.println("barang yang belum dikembalikan:");
                 borrow.printBorrowedItem();
-                System.out.print("Enter the items you want to return (number):");
+                System.out.print("Masukkan barang yang ingin dikembalikan (nomor):");
                 try {
                     returned = input.nextInt();
                     if (borrow.isValidReturn(returned)) {
@@ -178,33 +306,27 @@ public class LibraryMain {
         input.close();
     }
 
-    public void falseRespond() {
-        System.out.println("SORRY YOUR INPUT IS WRONG");
+    public static void falseRespond() {
+        System.out.println("MAAF INPUTAN ANDA SALAH");
     }
 
-    public void trueRespond(String username, int x) {
-        switch (x) {
-            case 1:
-                System.out.println("WELCOME" + username.toUpperCase() + "In our library!");
-                break;
-            case 2:
-                System.out.println("Thank you for borrowing at our library!");
-                break;
-            case 3:
-                System.out.println("Thank you for returning at our library!");
-                break;
-            default:
-                break;
-        }
-    }
-
-    public void printItems(Item[] items) {
+    public static void displayItems(Item[] items) {
         for (int i = 0; i < items.length; i++) {
             System.out.println((i + 1) + ". " + items[i].getTitle());
         }
     }
 
-    public void printDisplayInfo(Item item) {
-        item.displayInfo();
+    public static void printDisplayInfo(Item item) {
+        if (item instanceof Book) {
+            ((Book) item).displayInfo();
+        } else if (item instanceof CD) {
+            ((CD) item).displayInfo();
+        } else if (item instanceof Journal) {
+            ((Journal) item).displayInfo();
+        } else if (item instanceof Magazine) {
+            ((Magazine) item).displayInfo();
+        } else {
+            ((Newspaper) item).displayInfo();
+        }
     }
 }
