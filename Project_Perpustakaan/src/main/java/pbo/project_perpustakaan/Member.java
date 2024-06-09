@@ -8,13 +8,16 @@ public class Member {
     private String nama;
     private int nim;
     private int batasPeminjaman = 0;
-    private final int BATAS_AKHIR_PEMINJAMAN = 20;
-    private peminjamanKoleksi peminjaman[] = new peminjamanKoleksi[BATAS_AKHIR_PEMINJAMAN];
+
+    private peminjamanKoleksi peminjaman[] = new peminjamanKoleksi[20];
     private int denda = 0;
 
     public Member(String name, int nim) {
         this.nama = name;
         this.nim = nim;
+        for (int i = 0; i < peminjaman.length; i++) {
+            peminjaman[i] = new peminjamanKoleksi(null, 0, 0);
+        }
     }
 
     public String getNama() {
@@ -79,16 +82,17 @@ public class Member {
         }
     }
 
-    public String setPengembalianBarang() {
+    public Item setPengembalianBarang() {
         if (batasPeminjaman == 0) {
-            return "belum ada peminjaman";
+            System.out.println("belum ada peminjaman");
+            return null;
         } else {
             int pilihan;
-            for (int i = batasPeminjaman; i >= 0; i--) {
-                System.out.println((i + 1) + " " + peminjaman[i]);
+            for (int i = 0; i < batasPeminjaman; i++) {
+                System.out.println((i + 1) + ". " + peminjaman[i].getKoleksi().getTitle());
             }
             while (true) {
-                System.out.println("pilih koleksi yang ingin anda kembalikan : ");
+                System.out.println("pilih koleksi yang ingin anda kembalikan (angka) : ");
                 try {
                     pilihan = input.nextInt();
                     if (pilihan > 0 && pilihan < batasPeminjaman + 1) {
@@ -124,19 +128,26 @@ public class Member {
                 denda += keterlambatan * 1000; // tambah denda dengan total 1000 rupiah per hari
                 System.out.println("anda memiliki denda sebesar Rp " + denda);
             }
-
-            peminjaman[pilihan - 1] = null;
+            Item koleksiYangDikembalikan = peminjaman[pilihan - 1].getKoleksi();
+            peminjaman[pilihan - 1].setKoleksi(null);
+            peminjaman[pilihan - 1].setTanggalKembali(0);
+            peminjaman[pilihan - 1].setTanggalPinjam(0);
             for (int i = pilihan - 1; i < peminjaman.length; i++) {
                 if (i == peminjaman.length - 1) {
-                    peminjaman[i] = null;
+                    peminjaman[i].setKoleksi(null);
+                    peminjaman[i].setTanggalKembali(0);
+                    peminjaman[i].setTanggalPinjam(0);
                 } else {
-                    peminjaman[i] = peminjaman[i + 1];
+                    peminjaman[i].setKoleksi(peminjaman[i + 1].getKoleksi());
+                    peminjaman[i].setTanggalKembali(peminjaman[i + 1].getTanggalKembali());
+                    peminjaman[i].setTanggalPinjam(peminjaman[i + 1].getTanggalKembali());
                 }
             }
-            input.close();
+
             System.out.println();
             batasPeminjaman--;
-            return "pengembalian berhasil";
+            System.out.println("pengembalian berhasil");
+            return koleksiYangDikembalikan;
         }
     }
 
@@ -153,9 +164,9 @@ public class Member {
             System.out.println("slot peminjaman masih kosong");
         } else {
             for (int i = 0; i < batasPeminjaman; i++) {
-                System.out.println((i + 1) + " " + peminjaman[i].getKoleksi().getTitle());
+                System.out.println((i + 1) + ". " + peminjaman[i].getKoleksi().getTitle());
             }
         }
-
+        System.out.println();
     }
 }

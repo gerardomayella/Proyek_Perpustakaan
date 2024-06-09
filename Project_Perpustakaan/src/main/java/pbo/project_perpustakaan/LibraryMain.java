@@ -105,7 +105,6 @@ public class LibraryMain {
     };
 
     public static void main(String[] args) {
-        System.out.println("leeeeeeeeeeeng : " + itemList.length);
         Scanner input = new Scanner(System.in);
         int pilihanMember, pilihanMenu;
         displayMembers();
@@ -135,7 +134,7 @@ public class LibraryMain {
                 while (true) {
                     int x = displayMenu();
                     System.out.println();
-                    System.out.println("pilih menu : ");
+                    System.out.println("pilih menu (angka) : ");
                     try {
                         pilihanMenu = input.nextInt();
                         if (pilihanMenu > 0 && pilihanMenu < x) {
@@ -147,12 +146,14 @@ public class LibraryMain {
                         falseRespond();
                         input.nextLine();
                     }
+                    System.out.println();
                 }
 
                 if (pilihanMenu == 1) { // mencari koleksi
                     int koleksiDicari;
                     displayItems();
                     while (true) {
+                        System.out.println();
                         System.out.println("Koleksi apa yang ingin anda cari : ");
                         try {
                             koleksiDicari = input.nextInt();
@@ -164,16 +165,20 @@ public class LibraryMain {
                             falseRespond();
                             input.nextLine();
                         }
+                        System.out.println();
                     }
 
                     printDisplayInfo(itemList[koleksiDicari - 1]);
 
                 } else if (pilihanMenu == 2) { // menu peminjaman
                     menuPeminjaman(pilihanMember - 1);
+                    System.out.println();
                 } else if (pilihanMenu == 3) { // menu pengembalian
-
+                    menuPengembalian(pilihanMember - 1);
+                    System.out.println();
                 } else if (pilihanMenu == 4) { // menu info member
                     memberList[pilihanMember - 1].getInfoMember();
+                    System.out.println();
                 } else if (pilihanMenu == 5) { // menu ke member
                     break;
                 } else {
@@ -193,6 +198,7 @@ public class LibraryMain {
         for (int i = 0; i < memberList.length; i++) {
             System.out.println((i + 1) + ".  " + memberList[i].getNama());
         }
+        System.out.println();
     }
 
     public static int displayMenu() {
@@ -240,8 +246,13 @@ public class LibraryMain {
         itemList[koleksiPilihan - 1].setIsAvailable(false);
     }
 
-    public void menuPengembalian() {
-
+    public static void menuPengembalian(int memberA) {
+        Item koleksiYangDikembalikan = memberList[memberA].setPengembalianBarang();
+        for (int i = 0; i < itemList.length; i++) {
+            if (itemList[i].getTitle() == koleksiYangDikembalikan.getTitle()) {
+                itemList[i].setIsAvailable(true);
+            }
+        }
     }
 
     public static void falseRespond() {

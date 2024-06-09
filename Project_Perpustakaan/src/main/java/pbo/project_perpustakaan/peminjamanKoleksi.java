@@ -32,14 +32,14 @@ public class peminjamanKoleksi {
     }
 
     public int getTanggalPinjam() {
-        return tanggalPinjam;
+        return this.tanggalPinjam;
     }
 
     public int getTanggalKembali() {
-        return tanggalKembali;
+        return this.tanggalKembali;
     }
 
     public Item getKoleksi() {
-        return koleksi;
+        return this.koleksi;
     }
 }
