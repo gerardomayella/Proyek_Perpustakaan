@@ -12,15 +12,15 @@ public class Item {
     }
 
     public String getTitle() {
-        return "title";
+        return this.title;
     }
 
     public String getAuthor() {
-        return "author";
+        return this.author;
     }
 
     public boolean getIsAvailable() {
-        return false;
+        return this.isAvailable;
     }
 
     public void setIsAvailable(boolean x) {
@@ -28,8 +28,8 @@ public class Item {
     }
 
     public void displayInfo() {
-        System.out.println("Judul : " + title);
-        System.out.println("Penulis : " + author);
-        System.out.println("Ketersediaan " + isAvailable);
+        System.out.println("Judul : " + getTitle());
+        System.out.println("Penulis : " + getAuthor());
+        System.out.println("Ketersediaan : " + getIsAvailable());
     }
 }

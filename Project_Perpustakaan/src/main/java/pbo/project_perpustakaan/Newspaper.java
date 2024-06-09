@@ -31,8 +31,8 @@ public class Newspaper extends Item implements halaman {
     public void displayInfo() {
         System.out.println("Newspaper information : ");
         super.displayInfo();
-        System.out.println("Date of issue : " + date);
-        System.out.println("Jumlah Halaman : " + jumlahHalaman);
+        System.out.println("Date of issue : " + getDate());
+        System.out.println("Jumlah Halaman : " + getJumlahHalaman());
     }
 
 }

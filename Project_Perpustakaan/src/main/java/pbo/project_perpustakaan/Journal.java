@@ -37,9 +37,9 @@ public class Journal extends Item implements halaman {
     public void displayInfo() {
         System.out.println("Informasi Jurnal : ");
         super.displayInfo();
-        System.out.println("Volume : " + volume);
-        System.out.println("Terbitan : " + issue);
-        System.out.println("Jumlah halaman : " + jumlahHalaman);
+        System.out.println("Volume : " + getVolume());
+        System.out.println("Terbitan : " + getIssue());
+        System.out.println("Jumlah halaman : " + getJumlahHalaman());
     }
 
     @Override

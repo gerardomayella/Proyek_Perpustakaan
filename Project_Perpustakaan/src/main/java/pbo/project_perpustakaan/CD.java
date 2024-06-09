@@ -30,8 +30,8 @@ public class CD extends Item {
     public void displayInfo() {
         System.out.println("CD information : ");
         super.displayInfo();
-        System.out.println("Artist : " + artist);
-        System.out.println("Track Count : " + trackCount);
+        System.out.println("Artist : " + getArtist());
+        System.out.println("Track Count : " + getTrackCount());
     }
 
 }

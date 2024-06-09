@@ -26,8 +26,8 @@ public class Book extends Item implements halaman {
     public void displayInfo() {
         System.out.println("informasi buku : ");
         super.displayInfo();
-        System.out.println("ISBN : " + isbn);
-        System.out.println("Jumlah halaman : ");
+        System.out.println("ISBN : " + getIsbn());
+        System.out.println("Jumlah halaman : " + getJumlahHalaman());
     }
 
     @Override

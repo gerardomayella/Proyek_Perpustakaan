@@ -12,7 +12,6 @@ public class peminjamanKoleksi {
     private int tanggalPinjam;
     private int tanggalKembali;
     private Item koleksi;
-    private int denda = 0;
 
     public peminjamanKoleksi(Item koleksi, int tanggalPeminjaman, int tanggalKembali) {
         this.koleksi = koleksi;
@@ -42,13 +41,5 @@ public class peminjamanKoleksi {
 
     public Item getKoleksi() {
         return koleksi;
-    }
-
-    public void setDenda(int denda) {
-        this.denda = denda;
-    }
-
-    public int getDenda() {
-        return denda;
     }
 }

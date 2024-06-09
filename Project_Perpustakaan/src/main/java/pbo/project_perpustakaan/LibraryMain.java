@@ -4,6 +4,7 @@ import java.util.Scanner;
 import java.util.InputMismatchException;
 
 public class LibraryMain {
+    public static Scanner input = new Scanner(System.in);
     public static Item itemList[] = {
             new Book("To Kill a Mockingbird", "Harper Lee", "9780060935467", 324, true),
             new Book("The Great Gatsby", "F. Scott Fitzgerald", "9780141182634", 256, true),
@@ -47,16 +48,16 @@ public class LibraryMain {
             new Journal("Science", "American Association for the Advancement of Science", "Volume 2", "Issue 2", true,
                     150),
 
-            new Magazine("Time", "Time USA, LLC", "Edition 1", true),
-            new Magazine("National Geographic", "National Geographic Partners", "Edition 2", true),
-            new Magazine("The Economist", "The Economist Group", "Edition 3", true),
-            new Magazine("People", "Meredith Corporation", "Edition 4", true),
-            new Magazine("Sports Illustrated", "Meredith Corporation", "Edition 5", true),
-            new Magazine("Rolling Stone", "Wenner Media LLC", "Edition 6", true),
-            new Magazine("Vogue", "Condé Nast", "Edition 7", true),
-            new Magazine("Elle", "Hearst Magazines", "Edition 8", true),
-            new Magazine("Cosmopolitan", "Hearst Magazines", "Edition 9", true),
-            new Magazine("Harper's Bazaar", "Hearst Magazines", "Edition 10", true),
+            new Magazine("Time", "Time USA, LLC", "Edition 1", true, 120),
+            new Magazine("National Geographic", "National Geographic Partners", "Edition 2", true, 130),
+            new Magazine("The Economist", "The Economist Group", "Edition 3", true, 140),
+            new Magazine("People", "Meredith Corporation", "Edition 4", true, 110),
+            new Magazine("Sports Illustrated", "Meredith Corporation", "Edition 5", true, 125),
+            new Magazine("Rolling Stone", "Wenner Media LLC", "Edition 6", true, 115),
+            new Magazine("Vogue", "Condé Nast", "Edition 7", true, 135),
+            new Magazine("Elle", "Hearst Magazines", "Edition 8", true, 145),
+            new Magazine("Cosmopolitan", "Hearst Magazines", "Edition 9", true, 150),
+            new Magazine("Harper's Bazaar", "Hearst Magazines", "Edition 10", true, 160),
 
             new Newspaper("The New York Times", "The New York Times Company", "2022-01-01", 20, true),
             new Newspaper("The Wall Street Journal", "Dow Jones & Company", "2022-01-02", 30, true),
@@ -69,7 +70,6 @@ public class LibraryMain {
             new Newspaper("San Francisco Chronicle", "Hearst Corporation", "2022-01-09", 29, true),
             new Newspaper("The Denver Post", "Digital First Media", "2022-01-10", 23, true)
     };
-
     public static Member memberList[] = {
             new Member("Akhmad Fahmi", 12345),
             new Member("Ratna Sari", 67890),
@@ -105,76 +105,93 @@ public class LibraryMain {
     };
 
     public static void main(String[] args) {
+        System.out.println("leeeeeeeeeeeng : " + itemList.length);
         Scanner input = new Scanner(System.in);
         int pilihanMember, pilihanMenu;
-
+        displayMembers();
         // memilih member
         while (true) {
-            System.out.println("pilih member (angka): ");
-            displayMembers();
-            try {
-                pilihanMember = input.nextInt();
-                if (pilihanMember > 0 && pilihanMember <= memberList.length) {
-                    break;
-                } else {
-                    falseRespond();
-                }
-            } catch (InputMismatchException e) {
-                falseRespond();
-                input.next();
-            }
-        }
-
-        // memilih menu
-        while (true) {
-            int x = displayMenu();
-            System.out.println("pilih menu : ");
-            try {
-                pilihanMenu = input.nextInt();
-                if (pilihanMenu > 0 && pilihanMenu < x) {
-                    break;
-                } else {
-                    falseRespond();
-                }
-            } catch (InputMismatchException e) {
-                falseRespond();
-                input.next();
-            }
-        }
-
-        if (pilihanMenu == 1) { // mencari koleksi
-            int koleksiDicari;
-            displayItems(itemList);
             while (true) {
-                System.out.println("Koleksi apa yang ingin anda cari : ");
+
+                System.out.println();
+                System.out.println("pilih member (angka): ");
+
                 try {
-                    koleksiDicari = input.nextInt();
-                    if (koleksiDicari > 0 && koleksiDicari <= itemList.length) {
+                    pilihanMember = input.nextInt();
+                    if (pilihanMember > 0 && pilihanMember <= memberList.length) {
                         break;
+                    } else {
+                        falseRespond();
                     }
-                    falseRespond();
                 } catch (InputMismatchException e) {
                     falseRespond();
-                    input.next();
+                    input.nextLine();
                 }
             }
 
-            printDisplayInfo(itemList[koleksiDicari - 1]);
+            // menu bagian
+            while (true) {
+                // memilih menu
+                while (true) {
+                    int x = displayMenu();
+                    System.out.println();
+                    System.out.println("pilih menu : ");
+                    try {
+                        pilihanMenu = input.nextInt();
+                        if (pilihanMenu > 0 && pilihanMenu < x) {
+                            break;
+                        } else {
+                            falseRespond();
+                        }
+                    } catch (InputMismatchException e) {
+                        falseRespond();
+                        input.nextLine();
+                    }
+                }
 
-        } else if (pilihanMenu == 2) { // menu peminjaman
-            menuPeminjaman(itemList, memberList[pilihanMember - 1]);
+                if (pilihanMenu == 1) { // mencari koleksi
+                    int koleksiDicari;
+                    displayItems();
+                    while (true) {
+                        System.out.println("Koleksi apa yang ingin anda cari : ");
+                        try {
+                            koleksiDicari = input.nextInt();
+                            if (koleksiDicari > 0 && koleksiDicari <= itemList.length) {
+                                break;
+                            }
+                            falseRespond();
+                        } catch (InputMismatchException e) {
+                            falseRespond();
+                            input.nextLine();
+                        }
+                    }
 
-        } else if (pilihanMenu == 3) { // menu pengembalian
+                    printDisplayInfo(itemList[koleksiDicari - 1]);
 
-        } else {
-            // exit
+                } else if (pilihanMenu == 2) { // menu peminjaman
+                    menuPeminjaman(pilihanMember - 1);
+                } else if (pilihanMenu == 3) { // menu pengembalian
+
+                } else if (pilihanMenu == 4) { // menu info member
+                    memberList[pilihanMember - 1].getInfoMember();
+                } else if (pilihanMenu == 5) { // menu ke member
+                    break;
+                } else {
+                    break;
+                }
+            }
+            pilihanMember = 0;
+            if (pilihanMenu == 6) {
+                pilihanMenu = 0;
+                break;
+            }
         }
         input.close();
     } // end of main
 
     public static void displayMembers() {
         for (int i = 0; i < memberList.length; i++) {
-            System.out.println((i + 1) + memberList[i].getNama());
+            System.out.println((i + 1) + ".  " + memberList[i].getNama());
         }
     }
 
@@ -183,18 +200,47 @@ public class LibraryMain {
         System.out.println("1. Mencari koleksi ");
         System.out.println("2. Menu peminjaman ");
         System.out.println("3. Menu pengembalian");
-        System.out.println("4. Exit");
-        return 5;
+        System.out.println("4. Info member");
+        System.out.println("5. Exit ke pemilihan member");
+        System.out.println("6. Exit program");
+        return 7;
     }
 
-    public static void menuPeminjaman(Item[] item, Member member) {
+    public static void menuPeminjaman(int memberA) {// memberA adalah index untuk member yang dipilih
 
-        Scanner input = new Scanner(System.in);
+        int koleksiPilihan = 0;
+        boolean x = false;
+        displayItems();
+        System.out.println();
 
-        input.close();
+        while (!x) {
+            while (true) {
+                try {
+                    System.out.println("koleksi apa yang ingin anda pinjam : ");
+                    koleksiPilihan = input.nextInt();
+                    if (koleksiPilihan > 0 && koleksiPilihan <= itemList.length) {
+                        break;
+                    } else {
+                        falseRespond();
+                        System.out.println();
+                    }
+                } catch (InputMismatchException e) {
+
+                    falseRespond();
+                    System.out.println();
+                    input.nextLine();
+                }
+
+            }
+            printDisplayInfo(itemList[koleksiPilihan - 1]);
+            System.out.println();
+            x = konfirmasi();
+        }
+        memberList[memberA].setPeminjamanBarang(itemList[koleksiPilihan - 1]);
+        itemList[koleksiPilihan - 1].setIsAvailable(false);
     }
 
-    public void menuPengembalian(Member member, peminjamanKoleksi borrow) {
+    public void menuPengembalian() {
 
     }
 
@@ -202,14 +248,14 @@ public class LibraryMain {
         System.out.println("MAAF INPUTAN ANDA SALAH");
     }
 
-    public static void displayItems(Item[] items) {
-        for (int i = 0; i < items.length; i++) {
-            System.out.println((i + 1) + ". " + items[i].getTitle());
+    public static void displayItems() {
+        System.out.println("Daftar koleksi yang dimiliki perpustakaan:");
+        for (int i = 0; i < itemList.length; i++) {
+            System.out.println((i + 1) + ". " + itemList[i].getTitle());
         }
     }
 
     public static void printDisplayInfo(Item item) {
-
         if (item instanceof Book) {
             ((Book) item).displayInfo();
         } else if (item instanceof CD) {
@@ -221,6 +267,17 @@ public class LibraryMain {
         } else {
             ((Newspaper) item).displayInfo();
         }
+    }
+
+    public static boolean konfirmasi() {
+        System.out.print("Apakah pilihan anda sudah benar (y/n): ");
+
+        String masukkan = input.next();
+        while (!masukkan.equalsIgnoreCase("y") && !masukkan.equalsIgnoreCase("n")) {
+            System.out.print("Input salah, silakan coba lagi (y/n): ");
+            masukkan = input.next();
+        }
+        return masukkan.equalsIgnoreCase("y");
     }
 
 }

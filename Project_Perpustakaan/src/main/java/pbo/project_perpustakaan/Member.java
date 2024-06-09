@@ -4,10 +4,12 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Member {
+    public static Scanner input = new Scanner(System.in);
     private String nama;
     private int nim;
     private int batasPeminjaman = 0;
-    private peminjamanKoleksi peminjaman[] = new peminjamanKoleksi[20];
+    private final int BATAS_AKHIR_PEMINJAMAN = 20;
+    private peminjamanKoleksi peminjaman[] = new peminjamanKoleksi[BATAS_AKHIR_PEMINJAMAN];
     private int denda = 0;
 
     public Member(String name, int nim) {
@@ -32,8 +34,9 @@ public class Member {
     }
 
     public String setPeminjamanBarang(Item koleksi) {
+
         if (batasPeminjaman < peminjaman.length && koleksi.getIsAvailable()) {
-            Scanner input = new Scanner(System.in);
+
             int tanggalPinjam = 0;
             int tanggalKembali = 0;
 
@@ -48,7 +51,7 @@ public class Member {
                     break;
                 } catch (InputMismatchException e) {
                     System.out.println("Error: input tidak valid");
-                    input.next();
+                    input.nextLine();
                 }
             }
 
@@ -63,13 +66,12 @@ public class Member {
                     break;
                 } catch (InputMismatchException e) {
                     System.out.println("Error: input tidak valid");
-                    input.next();
+                    input.nextLine();
                 }
             }
 
             peminjaman[batasPeminjaman] = new peminjamanKoleksi(koleksi, tanggalPinjam, tanggalKembali);
             batasPeminjaman++;
-            input.close();
             return "peminjaman berhasil";
 
         } else {
@@ -81,7 +83,6 @@ public class Member {
         if (batasPeminjaman == 0) {
             return "belum ada peminjaman";
         } else {
-            Scanner input = new Scanner(System.in);
             int pilihan;
             for (int i = batasPeminjaman; i >= 0; i--) {
                 System.out.println((i + 1) + " " + peminjaman[i]);
@@ -134,11 +135,27 @@ public class Member {
             }
             input.close();
             System.out.println();
+            batasPeminjaman--;
             return "pengembalian berhasil";
         }
     }
 
     public int getDenda() {
         return denda;
+    }
+
+    public void getInfoMember() {
+        System.out.println("Nama member : " + getNama());
+        System.out.println("NIM member : " + getNim());
+        System.out.println("Denda sekarang : Rp " + getDenda());
+        System.out.println("Koleksi yang dipinjam : ");
+        if (batasPeminjaman == 0) {
+            System.out.println("slot peminjaman masih kosong");
+        } else {
+            for (int i = 0; i < batasPeminjaman; i++) {
+                System.out.println((i + 1) + " " + peminjaman[i].getKoleksi().getTitle());
+            }
+        }
+
     }
 }
