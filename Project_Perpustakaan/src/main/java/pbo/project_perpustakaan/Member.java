@@ -38,7 +38,7 @@ public class Member {
 
     public String setPeminjamanBarang(Item koleksi) {
 
-        if (batasPeminjaman < peminjaman.length && koleksi.getIsAvailable()) {
+        if (batasPeminjaman < peminjaman.length || koleksi.getIsAvailable()) {
 
             int tanggalPinjam = 0;
             int tanggalKembali = 0;
